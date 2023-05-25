@@ -12,7 +12,3 @@ def find_character_indices(text):
         char_indices[char].append(i)
     return char_indices
 
-input_text = input("Enter some text: ")
-char_counts = count_characters(input_text)
-char_indices = find_character_indices(input_text)
-

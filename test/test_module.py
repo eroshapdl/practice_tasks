@@ -1,5 +1,4 @@
-from main.count import count_characters
-from main.character_indices import find_character_indices
+from main.count import count_characters , find_character_indices
 
 
 def test_count_characters():

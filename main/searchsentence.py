@@ -3,6 +3,7 @@ def search_sentences(sentences, search):
     for sentence in sentences:
         if search in sentence:
             results.append(sentence)
+            break
     return results
 
 sentences = [

@@ -7,8 +7,11 @@ def count_characters(text):
             char_count[char] = 1
     return char_count
 
+
+
 input_text = input("Enter some text: ")
-result = count_characters(input_text)
+char_counts = count_characters(input_text)
+
 print("Character counts:")
-for char, count in result.items():
+for char, count in char_counts.items():
     print(f"{char}: {count}")

@@ -13,3 +13,7 @@ def test_find_character_indices():
     result = find_character_indices(text)
     assert result == {'H': [0], 'e': [1], 'l': [2, 3, 9], 'o': [4, 7], ',': [5], ' ': [6], 'W': [8], 'r': [10], 'd': [11], '!': [12]}
 
+
+if __name__ == '__main__':
+    test_count_characters()
+    test_find_character_indices()

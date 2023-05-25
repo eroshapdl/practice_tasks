@@ -16,10 +16,3 @@ input_text = input("Enter some text: ")
 char_counts = count_characters(input_text)
 char_indices = find_character_indices(input_text)
 
-print("Character counts:")
-for char, count in char_counts.items():
-    print(f"{char}: {count}")
-
-print("Character indices:")
-for char, indices in char_indices.items():
-    print(f"{char}: {indices}")

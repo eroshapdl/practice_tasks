@@ -1,14 +1,12 @@
 def search_sentences(sentences, search):
-    results = []
-    found = False
-
-    for sentence in sentences:
-        if search in sentence:
-            results.append(sentence)
-            found = True
-            break  
-
-    if found:
+    global has_searched
+    if not has_searched:
+        results = []
+        for sentence in sentences:
+            if search in sentence:
+                results.append(sentence)
+                break
+        has_searched = True
         return results
     else:
         return []
@@ -23,12 +21,9 @@ sentences = [
 ]
 
 search = "eru"
+has_searched = False  
 results = search_sentences(sentences, search)
 
 print(search)
 for sentence in results:
     print(sentence)
-
-
-
-

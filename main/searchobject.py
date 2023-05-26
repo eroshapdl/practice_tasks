@@ -1,10 +1,10 @@
-def create_inverted_index(sentences):
-    inverted_index = {}
+from collections import defaultdict
+
+def create_inverted_index(sentences, field):
+    inverted_index = defaultdict(list)
     for doc_id, sentence in enumerate(sentences):
-        words = sentence.split()
+        words = sentence.get(field, "").split()
         for word in words:
-            if word not in inverted_index:
-                inverted_index[word] = []
             inverted_index[word].append(doc_id)
     return inverted_index
 
@@ -16,25 +16,27 @@ def search_sentences(inverted_index, search_term, sentences):
     return results
 
 sentences = [
-    "iam eru",
-    "eru paudel",
-    "hello",
-    "sup eru",
-    "ttyl ok bye",
-    "aajha jado cha",
+    {"id": 1, "text": "iam erosha paudel"},
+    {"id": 2, "text": "hello how are you?"},
+    {"id": 3, "text": "my name is erosha"},
+    {"id": 4, "text": "aajha jado cha"},
+    {"id": 5, "text": "kathmandu is jado "},
 ]
 
-inverted_index = create_inverted_index(sentences)
+field = "text"
 
-def perform_search(search_term):
+inverted_index = create_inverted_index(sentences, field)
+
+def search(search_term):
     results = search_sentences(inverted_index, search_term, sentences)
     print("search term:", search_term)
     if len(results) > 0:
         for sentence in results:
             print(sentence)
     else:
-        print("no word found.")
-        
-search_terms = ["eru", "hello", "sup"]
-for term in search_terms:
-    perform_search(term)
+        print("no results found.")
+
+
+search("erosha")
+search("jado")
+search("kathmandu")

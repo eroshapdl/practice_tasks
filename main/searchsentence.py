@@ -1,29 +1,40 @@
-def search_sentences(sentences, search):
-    global has_searched
-    if not has_searched:
-        results = []
-        for sentence in sentences:
-            if search in sentence:
-                results.append(sentence)
-                break
-        has_searched = True
-        return results
+def create_inverted_index(sentences):
+    inverted_index = {}
+    for doc_id, sentence in enumerate(sentences):
+        words = sentence.split()
+        for word in words:
+            if word not in inverted_index:
+                inverted_index[word] = []
+            inverted_index[word].append(doc_id)
+    return inverted_index
+
+def search_sentences(inverted_index, search_term, sentences):
+    if search_term in inverted_index:
+        results = [sentences[doc_id] for doc_id in inverted_index[search_term]]
     else:
-        return []
+        results = []
+    return results
 
 sentences = [
     "iam eru",
     "eru paudel",
-    "hellooooooooooo",
+    "hello",
     "sup eru",
     "ttyl ok bye",
     "aajha jado cha",
 ]
 
-search = "eru"
-has_searched = False  
-results = search_sentences(sentences, search)
+inverted_index = create_inverted_index(sentences)
 
-print(search)
-for sentence in results:
-    print(sentence)
+def perform_search(search_term):
+    results = search_sentences(inverted_index, search_term, sentences)
+    print("search term:", search_term)
+    if len(results) > 0:
+        for sentence in results:
+            print(sentence)
+    else:
+        print("no word found.")
+        
+search_terms = ["eru", "hello", "sup"]
+for term in search_terms:
+    perform_search(term)

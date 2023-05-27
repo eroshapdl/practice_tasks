@@ -11,12 +11,14 @@ def create_inverted_index(sentences):
 
 def search_sentences(inverted_index, search_term, sentences):
     results = []
-    for doc_id, sentence in enumerate(sentences):
-        for value in sentence.values():
-            if search_term in str(value):
-                results.append(sentence)
-                break
+    if search_term in inverted_index:
+        indexes = inverted_index.get(search_term)
+    for index in indexes:
+        sentence = sentences[index]
+        results.append(sentence)
+        break
     return results
+
 
 sentences = [
     {"id": 1, "text": "iam erosha paudel"},
@@ -35,3 +37,4 @@ def search(search_term):
 search("erosha")
 search("jado")
 search("kathmandu")
+

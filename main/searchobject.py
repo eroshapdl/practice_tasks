@@ -18,11 +18,11 @@ def search_sentences(inverted_index, search_term):
     return results
 
 sentences = [
-    {"id": 1, "text": "iam erosha paudel"},
-    {"id": 2, "text": "hello how are you?"},
-    {"id": 3, "text": "my name is erosha"},
-    {"id": 4, "text": "aajha jado cha"},
-    {"id": 5, "text": "kathmandu is jado"},
+    {"id": 1, "name": "erosha", "address": "kathmandu", "company": "abcd"},
+    {"id": 2, "name": "ram", "address": "lalitpur", "position": "efgh"},
+    {"id": 3, "name": "sita", "address": "chitwan", "position": "ijkl"},
+    {"id": 4, "name": "hari", "address": "bhaktapur", "position": "mnop"},
+
 ]
 
 inverted_index = create_inverted_index(sentences)
@@ -36,6 +36,6 @@ def perform_search(search_term):
     else:
         print("no word found.")
 
-search_terms = ["erosha", "jado", "kathmandu"]
+search_terms = ["erosha", "mnop", "chitwan"]
 for term in search_terms:
     perform_search(term)

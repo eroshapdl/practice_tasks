@@ -7,14 +7,14 @@ def create_inverted_index(sentences):
             if isinstance(value, str):
                 words = str(value).split()
                 for word in words:
-                    inverted_index[word].append((sentence, field))
+                    inverted_index[word].append(sentence)
     return inverted_index
 
-def search_sentences(inverted_index, search_term, field=None):
+def search_sentences(inverted_index, search_term, field):
     results = []
-    for sentence, sentence_field in inverted_index[search_term]:
-        if field is None or field == sentence_field:
-            results.append(sentence.get(sentence_field))
+    for sentence in inverted_index[search_term]:
+        if field in sentence:
+            results.append(sentence[field])
     return results
 
 sentences = [
@@ -26,18 +26,15 @@ sentences = [
 
 inverted_index = create_inverted_index(sentences)
 
-def perform_search(search_term):
+def perform_search():
+    search_term = input("enter the search term: ")
     field = input("enter the field to retrieve data from: ")
-    field_values = []
-    for sentence in sentences:
-        if field in sentence:
-            field_values.append(sentence[field])
-    print("field:", field)
-    if len(field_values) > 0:
-        for value in field_values:
-            print(value)
+    results = search_sentences(inverted_index, search_term, field)
+    print("search term:", search_term)
+    if len(results) > 0:
+        for result in results:
+            print(result)
     else:
-        print("no data found for the field.")
+        print("no data found.")
 
-search_terms = []
-perform_search(search_terms)
+perform_search()

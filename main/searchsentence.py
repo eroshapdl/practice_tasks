@@ -18,7 +18,7 @@ def search_sentences(inverted_index, search_term, sentences):
 sentences = [
     "iam eru",
     "eru paudel",
-    "hello",
+    "helloo",
     "sup eru",
     "ttyl ok bye",
     "aajha jado cha",
